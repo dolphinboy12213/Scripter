@@ -1,4 +1,12 @@
-import colorama, sys, subprocess
+import sys, subprocess, os
+from colorama import init, Fore, Style
+
+
+def main():
+    with open("scripts/examplescript.txt", "r"):
+        for line in 
+
+
 
 def homescreen():
     while True:
@@ -17,6 +25,24 @@ def homescreen():
                 continue
 
 
-def main():
-    with open("scripts/examplescript.txt", "r"):
-        for line in 
+def file_select():
+    subprocess.run('clear', shell=True)
+    folder = os.listdir('./stories/templates')
+    txtfiles = []
+    for file in folder:
+        if file.endswith(".txt"):
+            txtfiles.append(file)
+    if not txtfiles:
+        raise LookupError("No '.txt' files found in /project/stories/templates")
+    while True:
+        i = 1
+        print(Fore.BLUE + "Choose from one the available stories:")
+        file_dictionary = {}
+        for file in txtfiles:
+            print(f"{i}. {file}")
+            file_dictionary.update({f"{i}":f"{file}"})
+            i += 1
+        filenumber = input()
+        if filenumber in file_dictionary:
+            return file_dictionary[filenumber]
+        subprocess.run('clear', shell=True)

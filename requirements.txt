@@ -1,3 +1,7 @@
+PIP:
 colorama
+
+SYSTEM:
 sys
+os
 subprocess
