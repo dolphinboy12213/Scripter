@@ -2,9 +2,19 @@ import sys, subprocess, os
 from colorama import init, Fore, Style
 
 
+def on_start():
+    global character
+    global character_lines 
+    character_lines = []
+    character = input("What character would you like the lines of?")
+
+
 def main():
-    with open("scripts/examplescript.txt", "r"):
-        for line in 
+    on_start()
+    with open("scripts/examplescript.txt", "r") as script:
+        for line in script:
+            if line.startswith():
+
 
 
 
