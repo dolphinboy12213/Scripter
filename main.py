@@ -70,10 +70,12 @@ def file_select():
         subprocess.run('clear', shell=True)
 
 
-def character_filename():
+def character_file():
     while True:
         savename = input(Fore.BLUE + "Name your character file:\n" + Fore.RESET)
-        if not savename == "":
+        if savename == "":
+            print(Fore.RED + "FILENAME REQUIRED"+ Fore.RESET)
+        else:
             try:
                 save = open(f"./stories/saves/{savename}.txt", "x")
             except FileExistsError:
@@ -83,8 +85,6 @@ def character_filename():
             else:
                 save.write(f"{finished_story}")
                 save.close()
-                print(f"Saved to /stories/saves/{savename}.txt")
+                print(f"Saved to /characters/saves/{savename}.txt")
                 input()
                 break
-        else:
-            break
