@@ -1,3 +1,5 @@
+import colorama, sys, subprocess
+
 def homescreen():
     while True:
         subprocess.run('clear', shell=True)
@@ -14,3 +16,7 @@ def homescreen():
             case _:
                 continue
 
+
+def main():
+    with open("scripts/examplescript.txt", "r"):
+        for line in 
