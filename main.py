@@ -13,14 +13,21 @@ def on_start():
 def main():
     while True:
         homescreen()
-        scriptfile = file_select()
+        scriptfile = file_select()                                      # info gathering from user
         on_start()
+        
         with open(f"scripts/{scriptfile}", "r") as script:
             for line in script:
-                if line.startswith(character):
+                if line.startswith(character):                          # compile all lines of certain character
                     character_lines.append(line)
-            if not character_lines:
-                print(f"Oops! No lines found for {character}")
+        script.close()
+        
+        subprocess.run('clear', shell=True)
+
+        if not character_lines:
+            print(f"Oops! No lines found for {character}")          # check if character specified even has any lines
+        else:
+            with
     
 
 def homescreen():
@@ -61,3 +68,23 @@ def file_select():
         if filenumber in file_dictionary:
             return file_dictionary[filenumber]
         subprocess.run('clear', shell=True)
+
+
+def character_filename():
+    while True:
+        savename = input(Fore.BLUE + "Name your character file:\n" + Fore.RESET)
+        if not savename == "":
+            try:
+                save = open(f"./stories/saves/{savename}.txt", "x")
+            except FileExistsError:
+                print(Fore.RED + "\nOops! Seems like your selected filename already exists!")
+                input()
+                subprocess.run('clear', shell=True)
+            else:
+                save.write(f"{finished_story}")
+                save.close()
+                print(f"Saved to /stories/saves/{savename}.txt")
+                input()
+                break
+        else:
+            break
