@@ -7,7 +7,7 @@ def on_start():
     global character
     global character_lines 
     character_lines = []
-    character = input("What character would you like the lines of?")
+    character = input("What character would you like the lines of?") + ":"
 
 
 def main():
@@ -27,7 +27,7 @@ def main():
         if not character_lines:
             print(f"Oops! No lines found for {character}")          # check if character specified even has any lines
         else:
-            with
+            character_file()
     
 
 def homescreen():
@@ -77,14 +77,18 @@ def character_file():
             print(Fore.RED + "FILENAME REQUIRED"+ Fore.RESET)
         else:
             try:
-                save = open(f"./stories/saves/{savename}.txt", "x")
+                save = open(f"./characters/{savename}.txt", "x")
             except FileExistsError:
                 print(Fore.RED + "\nOops! Seems like your selected filename already exists!")
                 input()
                 subprocess.run('clear', shell=True)
             else:
-                save.write(f"{finished_story}")
+                for line in character_lines:
+                    save.write(line)
                 save.close()
-                print(f"Saved to /characters/saves/{savename}.txt")
+                print(f"Saved to /characters/{savename}.txt")
                 input()
                 break
+
+if __name__ == "__main__":
+    main()
